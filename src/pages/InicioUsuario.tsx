@@ -1,14 +1,12 @@
-import { Menu } from "../components/Menu";
-
-function InicioMateria(){
+function InicioUsuarios(){
     return(
         <>
-        <Menu />
+       
 
-        <h1>pagina Inicio Materias</h1>
+        <h1>pagina Inicio usuario</h1>
         
         </>
-    )
+    )        
 }
 
-export default InicioMateria;
+export default InicioUsuarios;

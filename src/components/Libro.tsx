@@ -12,7 +12,7 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({libro}) => {
             <td>{libro.NombreLibro}</td>
             <td>{libro.AutorLibro}</td>
             <td>{libro.Genero}</td>
-            <td>{libro.Puntuacion}</td>
+            <td>{libro.Editorial}</td>
         </tr>
     )
 } 

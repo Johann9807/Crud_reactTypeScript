@@ -2,34 +2,26 @@ import React, { FunctionComponent } from 'react'
 import ILibro from '../entidades/ILibro';
 import { Libro } from './Libro';
 
-// export const getlistaLibros = () => {
-//   if (!localStorage["Libro"]) {
-//       localStorage["Libro"] = JSON.stringify([]);
-//   }
-
-//   let libro = JSON.parse(localStorage["Libro"])
-//   return libro;
-// }
 
 export interface LibroPropiedadesTabla {
   libros: ILibro[];
 }
-
 export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros}) => {
-  // const [libros, setLibro] = useState([]);
 
   return (
-    <div>
+    <div className='table-container'>
+    <span></span>
       {
-        libros.length > 0 ? (
         
-      <table className='tablaLibro'>
+        libros.length > 0 ? (
+      
+      <table className='table'>
         <thead>
         <tr>
-          <th>Nombre Libro </th>
-          <th>Nombre Autor </th>
-          <th>Genero </th>
-          <th>Puntuacion </th>
+            <th>Nombre Libro </th>
+            <th>Nombre Autor </th>
+            <th>Genero </th>
+            <th>Puntuacion </th>
         </tr>
         </thead>
         <tbody>
@@ -42,7 +34,7 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros})
         </tbody>
       </table>
       ): (
-        <p>no hay libros</p>
+        <p></p>
       )
     }
     </div>

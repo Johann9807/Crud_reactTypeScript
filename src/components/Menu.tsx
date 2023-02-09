@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom"
-export const Menu = () =>{
+import React, { FunctionComponent } from 'react';
+interface IPropiedadesMenu{
+irAdministracionLibro:()=>void;
+irAdministracionUsuario:() => void; 
+irAdministracionPrestamo:() => void
+}
+
+   export const Menu:FunctionComponent<IPropiedadesMenu> = ({irAdministracionLibro,irAdministracionUsuario,irAdministracionPrestamo}) =>{
   return(
-    <div className="menu">
+    <div className="container">
+      <nav>
+      <h2 className="logo"><span>Book</span>shop</h2>
       <ul>
-        <li><Link to="/">Libros</Link></li>
-        <li><Link to="/materias">Usuario</Link></li>
-        <li><Link to="/">Prestamo</Link></li>
+      <button className="button-menu" type="button" onClick={irAdministracionLibro}>Libros</button>
+      <button className="button-menu" type="button" onClick={irAdministracionUsuario}>Usuarios</button>
+      <button className="button-menu" type="button" onClick={irAdministracionPrestamo}>Prestamo</button>
       </ul>
-      
-      
-      
-      </div>
+      <button className="button-login" type="button">Login</button>
+      </nav>
+    </div>
   )
 }
 

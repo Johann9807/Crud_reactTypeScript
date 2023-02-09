@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react';
+import  { FunctionComponent, useState } from 'react';
 import ILibro from '../entidades/ILibro';
+import Swal from 'sweetalert2'
+
 
 interface LibroProps {
   alCambiarValor : (name : string, value : string) => void
@@ -10,25 +12,27 @@ interface LibroProps {
 
 
 const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,alCambiarValor, guardarLibro,libro  }) => {
-  // const [libro, setLibro] = useState<ILibro>(estadoInicial);
-  // const [listaLibros, setListaLibros] = useState<ILibro[]>([]);
-
-
   const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-    guardarLibro()
-    // localStorage.setItem('libro', JSON.stringify(libro));
-    
+    event.preventDefault();  
+    guardarLibro() 
     limpiarFormulario();
+
+    
   };
+
+  const [isChecked, setIsChecked] = useState(false);
+  
   
 
   return (
     <>
     <form className='Form-libros' onSubmit={handleSubmit}>
+      <h4>Buscador Avanzado</h4>
       <div>
-        <label className="lbl-nombre" htmlFor="nombreLibro">Nombre Libro: </label>
-        <input
+        <p className='ipt-check'><input  type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)} /> Acepta los terminos y condiciones</p>
+        
+        <label htmlFor="nombreLibro">Titulo: </label>
+        <input className="ipt-nombre" required disabled={!isChecked}
           type="text"
           id="nombreLibro"
           name="NombreLibro"
@@ -36,8 +40,8 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
           onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} />
       </div>
       <div>
-        <label className="lbl-nombre" htmlFor="autorLibro">Nombre Autor: </label>
-        <input
+        <label htmlFor="autorLibro">Autor: </label>
+        <input className="ipt-nombre"  required disabled={!isChecked}
           type="text"
           id="autorLibro"
           name="AutorLibro"
@@ -45,35 +49,32 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
           onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} />
       </div>
       <div>
-        <label htmlFor="genero">Genero Libro: </label>
-        <select
+      <label htmlFor="editorial">Editorial: </label>
+        <input className="ipt-nombre" required disabled={!isChecked}
+          type="text"
+          id="editorial"
+          name="Editorial"
+          value={libro.Editorial}
+          onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} />
+      </div>
+      <div>
+      <label htmlFor="Editorial">Genero: </label>
+        <input className="ipt-nombre" required  disabled={!isChecked} minLength={5} maxLength={30}
+          type="text"
           id="genero"
           name="Genero"
           value={libro.Genero}
-          onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} >
-            <option value="">Seleccionar...</option>
-            <option value="terror">Terror</option>
-            <option value="aventura">Aventura epica</option>
-            <option value="drama">Drama</option>
-            <option value="romance">Romance</option>
-          </select>
+          onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} />
       </div>
-      <div>
-        <label htmlFor="puntuacion">Puntuacion Libro: </label>
-        <select
-          id="puntuacion"
-          name="Puntuacion"
-          value={libro.Puntuacion}
-          onChange={(event)=>alCambiarValor(event.target.name,event.target.value)} >
-            <option value="">Seleccionar...</option>
-            <option value="1">1-Estrella</option>
-            <option value="2">2-Estrella</option>
-            <option value="3">3-Estrella</option>
-            <option value="4">4-Estrella</option>
-          </select>
-      </div>
-      <div>
-      <button type="submit">Guardar</button>
+      <p>Para que la búsqueda sea más precisa rellene el máximo número de campos posibles.</p>
+      <div className='boton' >
+      <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Guardar</button>
+      
       </div>
     </form>
     </>
@@ -81,3 +82,7 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
 }
 
 export default FormularioLibros;
+
+function swal(arg0: string, arg1: string, arg2: string) {
+  throw new Error('Function not implemented.');
+}
