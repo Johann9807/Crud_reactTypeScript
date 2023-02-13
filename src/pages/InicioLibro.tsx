@@ -32,11 +32,18 @@ export const InicioLibro = () => {
   };
 
   const guardarLibro = () => {
-    let lista = [...listaLibros]
-    let nuevoLibro = { ...libro, IdLibro: uuidv4() };
-    lista.push(nuevoLibro);
+    let lista = [...listaLibros];
+    let nuevoLibro = { ...libro, IdLibro: libro.IdLibro || uuidv4() };
+    const indice = lista.findIndex((l) => l.IdLibro === nuevoLibro.IdLibro);
+    if (indice === -1) {
+      lista.push(nuevoLibro);
+    } else {
+      lista[indice] = nuevoLibro;
+    }
     setListaLibros(lista);
-  }
+
+  };
+
   const limpiarFormulario = () => {
     setLibro(estadoInicial)
   }
@@ -58,12 +65,18 @@ export const InicioLibro = () => {
     setAdministracionPrestamo(true)
   }
 
+  const onEdit = (libro: ILibro) => {
+    setLibro(libro);
+  };
+
+
   return (
     <>
       <Menu irAdministracionLibro={irAdministracionLibro} irAdministracionUsuario={irAdministracionUsuario} irAdministracionPrestamo={irAdministracionPrestamo}/>
       {abrirAdministracionlibro && (
 
-        <><FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} /><TablaLibros libros={listaLibros} /></>
+        <><FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
+        <TablaLibros libros={listaLibros} onEdit={onEdit} /></>
 
       )}
 

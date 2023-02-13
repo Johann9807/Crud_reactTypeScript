@@ -5,8 +5,9 @@ import { Libro } from './Libro';
 
 export interface LibroPropiedadesTabla {
   libros: ILibro[];
+  onEdit: (libro: ILibro) => void;
 }
-export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros}) => {
+export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, onEdit}) => {
 
   return (
     <div className='table-container'>
@@ -21,16 +22,16 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros})
             <th>Nombre Libro </th>
             <th>Nombre Autor </th>
             <th>Genero </th>
-            <th>Puntuacion </th>
+            <th>Editorial </th>
             <th>Editar </th>
         </tr>
         </thead>
         <tbody>
         {
           libros.map((libro: ILibro) => 
-          <Libro key={libro.IdLibro} libro={libro} onEdit={function (libro: ILibro): void {
-              throw new Error('Function not implemented.');
-            } } /> 
+          <Libro key={libro.IdLibro} 
+          libro={libro} 
+          onEdit={onEdit} />
           
           )
         }
