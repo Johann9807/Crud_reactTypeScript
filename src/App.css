@@ -217,3 +217,39 @@ body{
     border: 1px solid #24303c;
     background-color: #b7e9ff;
 }
+.button-guardar{
+    padding: 10px;
+    border-radius: 40px;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #b7e9ff;
+    color: #396d16;
+}
+.button-guardar:hover{
+    color: #1f53c5;
+}
+.button-cancelar{
+    padding: 10px;
+    border-radius: 40px;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #b7e9ff;
+    color: #d63d3d;
+}
+.button-cancelar:hover{
+    color: #1f53c5;
+}
+.button-editar{
+    padding: 5px;
+    border-radius: 40px;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #b7e9ff;
+    color: #d63d3d;
+}
+.button-editar:hover{
+    color: #1f53c5;
+}

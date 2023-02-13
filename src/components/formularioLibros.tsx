@@ -1,6 +1,5 @@
 import  { FunctionComponent, useState } from 'react';
 import ILibro from '../entidades/ILibro';
-import Swal from 'sweetalert2'
 
 
 interface LibroProps {
@@ -16,7 +15,6 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
     event.preventDefault();  
     guardarLibro() 
     limpiarFormulario();
-
     
   };
 
@@ -83,6 +81,3 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
 
 export default FormularioLibros;
 
-function swal(arg0: string, arg1: string, arg2: string) {
-  throw new Error('Function not implemented.');
-}

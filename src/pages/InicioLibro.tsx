@@ -21,6 +21,7 @@ export const InicioLibro = () => {
   const [abrirAdministracionlibro, setAdministracionLibro] = useState<boolean>(true);
   const [abrirAdministracionUsuario, setAdministracionUsuario] = useState<boolean>(false);
   const [abrirAdministracionPrestamo, setAdministracionPrestamo] = useState<boolean>(false);
+  
 
 
   const alCambiarValor = (name: string, value: string) => {

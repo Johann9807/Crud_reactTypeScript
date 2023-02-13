@@ -22,12 +22,15 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros})
             <th>Nombre Autor </th>
             <th>Genero </th>
             <th>Puntuacion </th>
+            <th>Editar </th>
         </tr>
         </thead>
         <tbody>
         {
           libros.map((libro: ILibro) => 
-          <Libro key={libro.IdLibro} libro={libro} /> 
+          <Libro key={libro.IdLibro} libro={libro} onEdit={function (libro: ILibro): void {
+              throw new Error('Function not implemented.');
+            } } /> 
           
           )
         }
