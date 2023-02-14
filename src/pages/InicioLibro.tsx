@@ -68,8 +68,11 @@ const guardarLibro = () => {
   const onEdit = (libro: ILibro) => {
     setLibro(libro);
   };
-
-  
+ 
+  const onDelete = (id: string) => {
+    debugger
+    setListaLibros(listaLibros.filter((libro) => libro.IdLibro !== id));
+  };
 
 
   return (
@@ -78,7 +81,7 @@ const guardarLibro = () => {
       {abrirAdministracionlibro && (
 
         <><FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
-        <TablaLibros libros={listaLibros} onEdit={onEdit} /></>
+        <TablaLibros libros={listaLibros} onEdit={onEdit}  onDelete={onDelete}/></>
 
       )}
 

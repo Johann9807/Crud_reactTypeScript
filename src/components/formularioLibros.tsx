@@ -27,7 +27,7 @@ const  FormularioLibros: FunctionComponent <LibroProps> = ({limpiarFormulario,al
     <form className='Form-libros' onSubmit={handleSubmit}>
       <h4>Buscador Avanzado</h4>
       <div>
-        <p className='ipt-check'><input  type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)} /> Acepta los terminos y condiciones</p>
+        <p className='ipt-check'><input  required type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)} /> Acepta los terminos y condiciones</p>
         
         <label htmlFor="nombreLibro">Titulo: </label>
         <input className="ipt-nombre" required disabled={!isChecked}

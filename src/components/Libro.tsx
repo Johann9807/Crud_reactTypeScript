@@ -1,18 +1,19 @@
 import { FunctionComponent } from "react";
 import ILibro from "../entidades/ILibro";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 interface LibroPropiedades {
     libro: ILibro;
     onEdit: (libro: ILibro) => void;
+    onDelete: (id: string) => void;
 
 }
 
-export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit }) => {
+export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit, onDelete }) => {
     const nombre = (libro.NombreLibro);
-    const autor= (libro.AutorLibro);
+    const autor = (libro.AutorLibro);
     const genero = (libro.Genero);
     const editorial = (libro.Editorial);
 
@@ -25,8 +26,11 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit }) =>
             Editorial: editorial
         });
     };
-   
-    
+
+
+    const manejarEliminarClic = () => {
+        onDelete(libro.IdLibro  ? libro.IdLibro : "");
+    };
 
     return (
         <tr>
@@ -37,6 +41,9 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit }) =>
             <td>
                 <button className="button-editar" onClick={manejarEditarClic}>
                     <FontAwesomeIcon icon={faEdit} />
+                </button>
+                <button className="button-eliminar" onClick={manejarEliminarClic}>
+                    <FontAwesomeIcon icon={faTrash} />
                 </button>
             </td>
         </tr>

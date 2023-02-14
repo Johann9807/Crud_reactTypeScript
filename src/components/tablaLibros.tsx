@@ -6,9 +6,10 @@ import { Libro } from './Libro';
 export interface LibroPropiedadesTabla {
   libros: ILibro[];
   onEdit: (libro: ILibro) => void;
+  onDelete: (id: string) => void;
   
 }
-export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, onEdit}) => {
+export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, onEdit,  onDelete}) => {
 
   return (
     <div className='table-container'>
@@ -24,7 +25,7 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, 
             <th>Nombre Autor </th>
             <th>Genero </th>
             <th>Editorial </th>
-            <th>Editar </th>
+            <th>Acciones </th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +33,8 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, 
           libros.map((libro: ILibro) => 
           <Libro key={libro.IdLibro} 
           libro={libro} 
-          onEdit={onEdit} 
+          onEdit={onEdit}
+          onDelete={onDelete}
           />
           
           )

@@ -248,8 +248,22 @@ body{
     font-size: 22px;
     font-weight: bold;
     background-color: #b7e9ff;
-    color: #d63d3d;
+    color: #159637;
+    cursor: pointer;
 }
 .button-editar:hover{
+    color: #1f53c5;
+}
+.button-eliminar{
+    padding: 5px;
+    border-radius: 40px;
+    border: 0;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #b7e9ff;
+    color: #ed2121;
+    cursor: pointer;
+}
+.button-eliminar:hover{
     color: #1f53c5;
 }
