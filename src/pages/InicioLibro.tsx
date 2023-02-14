@@ -72,7 +72,6 @@ const guardarLibro = () => {
   };
  
   const onDelete = (id: string) => {
-    debugger
     setListaLibros(listaLibros.filter((libro) => libro.IdLibro !== id));
   };
 
@@ -91,10 +90,14 @@ const guardarLibro = () => {
       )}
 
       {abrirAdministracionUsuario && (
-        <InicioUsuarios/>
+        <><InicioUsuarios />
+        <PieDePagina /></>
+        
         )}
       {abrirAdministracionPrestamo && (
+        <>
         <InicioPrestamo/>
+        <PieDePagina/></>
         )}
       
     </>
