@@ -31,7 +31,8 @@ export const InicioLibro = () => {
     });
   };
 
-  const guardarLibro = () => {
+  
+const guardarLibro = () => {
     let lista = [...listaLibros];
     let nuevoLibro = { ...libro, IdLibro: libro.IdLibro || uuidv4() };
     const indice = lista.findIndex((l) => l.IdLibro === nuevoLibro.IdLibro);
@@ -43,7 +44,6 @@ export const InicioLibro = () => {
     setListaLibros(lista);
 
   };
-
   const limpiarFormulario = () => {
     setLibro(estadoInicial)
   }
@@ -68,6 +68,8 @@ export const InicioLibro = () => {
   const onEdit = (libro: ILibro) => {
     setLibro(libro);
   };
+
+  
 
 
   return (

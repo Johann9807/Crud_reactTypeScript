@@ -6,6 +6,7 @@ import { Libro } from './Libro';
 export interface LibroPropiedadesTabla {
   libros: ILibro[];
   onEdit: (libro: ILibro) => void;
+  
 }
 export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, onEdit}) => {
 
@@ -31,7 +32,8 @@ export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, 
           libros.map((libro: ILibro) => 
           <Libro key={libro.IdLibro} 
           libro={libro} 
-          onEdit={onEdit} />
+          onEdit={onEdit} 
+          />
           
           )
         }
