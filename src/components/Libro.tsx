@@ -1,3 +1,4 @@
+import React from 'react';
 import { FunctionComponent } from "react";
 import ILibro from "../entidades/ILibro";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

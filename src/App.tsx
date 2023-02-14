@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { InicioLibro } from './pages/InicioLibro';
-// import InicioMateria from './pages/InicioUsuario';
+import React from 'react';
 
 function App() {
   return (

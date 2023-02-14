@@ -6,6 +6,8 @@ import ILibro from "../entidades/ILibro";
 import { v4 as uuidv4 } from 'uuid';
 import InicioUsuarios from "./InicioUsuario";
 import InicioPrestamo from "./InicioPrestamo";
+import React from 'react';
+import PieDePagina from "../components/PieDePagina";
 
 const estadoInicial: ILibro = {
   IdLibro: '',
@@ -80,8 +82,11 @@ const guardarLibro = () => {
       <Menu irAdministracionLibro={irAdministracionLibro} irAdministracionUsuario={irAdministracionUsuario} irAdministracionPrestamo={irAdministracionPrestamo}/>
       {abrirAdministracionlibro && (
 
-        <><FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
-        <TablaLibros libros={listaLibros} onEdit={onEdit}  onDelete={onDelete}/></>
+        <>
+        <FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
+        <TablaLibros libros={listaLibros} onEdit={onEdit}  onDelete={onDelete}/>
+        <PieDePagina/>
+        </>
 
       )}
 
