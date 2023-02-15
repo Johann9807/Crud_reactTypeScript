@@ -7,31 +7,12 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 interface LibroPropiedades {
     libro: ILibro;
-    onEdit: (libro: ILibro) => void;
-    onDelete: (id: string) => void;
+    editarLibro: (id: string) => void;
+    eliminarLibro: (id: string) => void;
 
 }
 
-export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit, onDelete }) => {
-    const nombre = (libro.NombreLibro);
-    const autor = (libro.AutorLibro);
-    const genero = (libro.Genero);
-    const editorial = (libro.Editorial);
-
-    const manejarEditarClic = () => {
-        onEdit({
-            ...libro,
-            NombreLibro: nombre,
-            AutorLibro: autor,
-            Genero: genero,
-            Editorial: editorial
-        });
-    };
-
-
-    const manejarEliminarClic = () => {
-        onDelete(libro.IdLibro  ? libro.IdLibro : "");
-    };
+export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, editarLibro, eliminarLibro }) => {
 
     return (
         <tr>
@@ -40,10 +21,10 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, onEdit, onDe
             <td>{libro.Genero}</td>
             <td>{libro.Editorial}</td>
             <td>
-                <button className="button-editar" onClick={manejarEditarClic}>
+                <button className="button-editar" onClick={_ => editarLibro(libro.IdLibro || "")}>
                     <FontAwesomeIcon icon={faEdit} />
                 </button>
-                <button className="button-eliminar" onClick={manejarEliminarClic}>
+                <button className="button-eliminar" onClick={_ => eliminarLibro(libro.IdLibro || "")}>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
             </td>

@@ -44,8 +44,8 @@ const guardarLibro = () => {
       lista[indice] = nuevoLibro;
     }
     setListaLibros(lista);
-
   };
+
   const limpiarFormulario = () => {
     setLibro(estadoInicial)
   }
@@ -67,14 +67,16 @@ const guardarLibro = () => {
     setAdministracionPrestamo(true)
   }
 
-  const onEdit = (libro: ILibro) => {
-    setLibro(libro);
+  const editarLibro = (idLibro: string) => {
+    let libroAEditar = listaLibros.find((libro) => libro.IdLibro === idLibro);
+    if (libroAEditar) {
+      setLibro(libroAEditar);
+    }
   };
  
-  const onDelete = (id: string) => {
+  const eliminarLibro = (id: string) => {
     setListaLibros(listaLibros.filter((libro) => libro.IdLibro !== id));
   };
-
 
   return (
     <>
@@ -83,7 +85,7 @@ const guardarLibro = () => {
 
         <>
         <FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
-        <TablaLibros libros={listaLibros} onEdit={onEdit}  onDelete={onDelete}/>
+        <TablaLibros libros={listaLibros} editarLibro={editarLibro}  eliminarLibro={eliminarLibro}/>
         <PieDePagina/>
         </>
 
