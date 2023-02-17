@@ -9,7 +9,6 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<InicioLibro/>}></Route>
-          {/* <Route path='/materias' element={<InicioMateria/>}></Route> */}
         </Routes>
       </Router>
     </div>

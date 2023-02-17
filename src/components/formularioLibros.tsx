@@ -4,15 +4,13 @@ import ILibro from '../entidades/ILibro';
 import {
   FormControl,
   FormGroup,
-  FormLabel,
   TextField,
   Checkbox,
   Button,
   Typography,
-  Box
+  Box,
+  FormControlLabel
 } from '@mui/material';
-import { width } from '@mui/system';
-
 
 interface LibroProps {
   alCambiarValor: (name: string, value: string) => void
@@ -41,37 +39,42 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
         paddingBottom: 3,
         paddingTop: 9,
         fontFamily: 'initial',
-        color: '#24303c'
+        color: '#24303c',
+        fontSize: '24px'
       }}>
         Buscador Avanzado
       </Typography>
-      <Box display="flex" justifyContent="center">
+      <Box sx={{
+      }}
+        display="flex" justifyContent="center">
         <FormControl component="form" className="Form-libros" onSubmit={handleSubmit}>
           <FormGroup>
-            <FormLabel sx={{
-              paddingBottom: 3,
-              paddingTop: 1,
-              textAlign: 'center'
-            }}
-              htmlFor="aceptaTerminos">
-              <Checkbox
-                sx={{
-                  color: '#1f53c5'
-                }}
-                required
-                checked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
-                name="aceptaTerminos"
-                id="aceptaTerminos"
-              />Acepta los terminos y condiciones
-            </FormLabel>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  sx={{
+                    color: '#1f53c5',
+                    margin: '20px 5px 20px 100px', 
+                  }}
+                  required
+                  checked={isChecked}
+                  onChange={() => setIsChecked(!isChecked)}
+                  name="aceptaTerminos"
+                  id="aceptaTerminos"
+                />
+              }
+              label="Acepta los términos y condiciones"
+            />
 
 
             <TextField
               InputProps={{
                 style: {
                   color: "#1f53c5",
-                  margin: "0 0 26px 0"
+                  margin: "0 0 26px 0",
+                  width: "500px",
+                  height: "55px",
+                  background: "#b7e9ff",
                 },
               }}
               required
@@ -88,7 +91,10 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
               InputProps={{
                 style: {
                   color: "#1f53c5",
-                  margin: "0 0 26px 0"
+                  margin: "0 0 26px 0",
+                  width: "500px",
+                  height: "55px",
+                  background: "#b7e9ff",
                 },
               }}
               required
@@ -105,7 +111,10 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
               InputProps={{
                 style: {
                   color: "#1f53c5",
-                  margin: "0 0 26px 0"
+                  margin: "0 0 26px 0",
+                  width: "500px",
+                  height: "55px",
+                  background: "#b7e9ff",
                 },
               }}
               required
@@ -122,7 +131,10 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
               InputProps={{
                 style: {
                   color: "#1f53c5",
-                  margin: "0 0 26px 0"
+                  margin: "0 0 26px 0",
+                  width: "500px",
+                  height: "55px",
+                  background: "#b7e9ff",
                 },
               }}
               required
@@ -135,16 +147,24 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
               onChange={(event) => alCambiarValor(event.target.name, event.target.value)}
             />
           </FormGroup>
-          <Typography 
-          variant="body1"
-          sx={{
-            paddingTop: 3,
-            paddingBottom: 5,
-          }}
+          <Typography
+            variant="body1"
+            sx={{
+              padding: "20px",
+              marginRight: "10px",
+              textAlign: "center"
+            }}
           >
-            Para que la búsqueda sea más precisa rellene el máximo número de campos posibles.
+            Para que la búsqueda sea más precisa rellene el máximo <br />
+            número de campos posibles.
           </Typography>
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="contained"
+            color="primary"
+            type="submit" sx={{
+              width: "150px",
+              height: "50px",
+              margin: "23px 0 36px 180px"
+            }}>
             Guardar
           </Button>
         </FormControl>
