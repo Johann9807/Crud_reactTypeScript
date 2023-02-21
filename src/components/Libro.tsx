@@ -1,6 +1,6 @@
 import React from 'react';
 import { FunctionComponent } from "react";
-import ILibro from "../entidades/ILibro";
+import ILibro from "../modelos/Libro/entidades/ILibro";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,6 +20,7 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, editarLibro,
             <td>{libro.AutorLibro}</td>
             <td>{libro.Genero}</td>
             <td>{libro.Editorial}</td>
+            <td>{libro.pokemon}</td>
             <td>
                 <button className="button-editar" onClick={_ => editarLibro(libro.IdLibro || "")}>
                     <FontAwesomeIcon icon={faEdit} />

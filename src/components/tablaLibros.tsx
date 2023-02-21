@@ -1,6 +1,15 @@
 import React, { FunctionComponent } from 'react'
-import ILibro from '../entidades/ILibro';
+import ILibro from '../modelos/Libro/entidades/ILibro';
 import { Libro } from './Libro';
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TableRow 
+} 
+from '@mui/material';
 
 
 export interface LibroPropiedadesTabla {
@@ -12,40 +21,42 @@ export interface LibroPropiedadesTabla {
 export const TablaLibros: FunctionComponent <LibroPropiedadesTabla> = ({libros, editarLibro,  eliminarLibro}) => {
 
   return (
-    <div className='table-container'>
-    <span></span>
-      {
-        
-        libros.length > 0 ? (
-      
-      <table className='table'>
-        <thead>
-        <tr>
-            <th>Nombre Libro </th>
-            <th>Nombre Autor </th>
-            <th>Genero </th>
-            <th>Editorial </th>
-            <th>Acciones </th>
-        </tr>
-        </thead>
-        <tbody>
+    <>
+    <TableContainer>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Nombre Libro</TableCell>
+          <TableCell>Nombre Autor</TableCell>
+          <TableCell>Genero</TableCell>
+          <TableCell>Editorial</TableCell>
+          <TableCell>Pokemon</TableCell>
+          <TableCell>Acciones</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {
-          libros.map((libro: ILibro) => 
-          <Libro key={libro.IdLibro} 
-          libro={libro} 
-          editarLibro={editarLibro}
-          eliminarLibro={eliminarLibro}
-          />
-          
+          libros.length > 0 ?
+          (
+            libros.map((libro: ILibro) => 
+              <Libro key={libro.IdLibro} 
+                libro={libro} 
+                editarLibro={editarLibro}
+                eliminarLibro={eliminarLibro}
+              />
+            )
+          ) :
+          (
+            <TableRow>
+              <TableCell colSpan={5} align="center">
+              </TableCell>
+            </TableRow>
           )
         }
-        </tbody>
-      </table>
-      ): (
-        <p></p>
-      )
-    }
-    </div>
+      </TableBody>
+    </Table>
+  </TableContainer>
+  </>
   )
 }
 

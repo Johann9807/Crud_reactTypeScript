@@ -7,5 +7,4 @@ const InicioPrestamo = () => {
     </div>
   )
 }
-
 export default InicioPrestamo

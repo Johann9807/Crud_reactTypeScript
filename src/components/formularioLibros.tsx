@@ -1,6 +1,5 @@
-import React from 'react';
-import { FunctionComponent, useState } from 'react';
-import ILibro from '../entidades/ILibro';
+import { FunctionComponent} from 'react';
+import ILibro from '../modelos/Libro/entidades/ILibro';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +8,9 @@ import {
   Button,
   Typography,
   Box,
-  FormControlLabel
+  FormControlLabel,
+  InputLabel,
+  Select
 } from '@mui/material';
 
 interface LibroProps {
@@ -17,19 +18,19 @@ interface LibroProps {
   guardarLibro: () => void
   libro: ILibro
   limpiarFormulario: () => void
+  isChecked: boolean
+  pokemonList: never[]
+  habilitarFormulario: () => void
 }
 
-
-const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, alCambiarValor, guardarLibro, libro }) => {
+const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, alCambiarValor, guardarLibro, libro, isChecked, pokemonList, habilitarFormulario }) => {
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     guardarLibro()
     limpiarFormulario();
+    
 
   };
-
-  const [isChecked, setIsChecked] = useState(false);
-
 
 
   return (
@@ -54,17 +55,35 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
                 <Checkbox
                   sx={{
                     color: '#1f53c5',
-                    margin: '20px 5px 20px 100px', 
+                    margin: '20px 5px 20px 100px',
                   }}
                   required
-                  checked={isChecked}
-                  onChange={() => setIsChecked(!isChecked)}
+                  onClick={habilitarFormulario}
                   name="aceptaTerminos"
                   id="aceptaTerminos"
                 />
               }
               label="Acepta los términos y condiciones"
             />
+            <FormControl sx={{ margin: '20px 5px 20px 100px' }}>
+              <InputLabel htmlFor="pokemon">Elegir un Pokémon</InputLabel>
+              <Select
+                native
+                value={libro.pokemon || ''}
+                onChange={(event) => alCambiarValor('pokemon', event.target.value)}
+                inputProps={{
+                  name: 'pokemon',
+                  id: 'pokemon',
+                }}
+              >
+                <option aria-label="None" value="" />
+                {pokemonList.map((pokemon: any) => (
+                  <option key={pokemon.name} value={pokemon.name}>
+                    {pokemon.name}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
 
 
             <TextField
@@ -78,7 +97,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
                 },
               }}
               required
-              disabled={!isChecked}
+              disabled={isChecked}
               type="text"
               id="nombreLibro"
               name="NombreLibro"
@@ -98,7 +117,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
                 },
               }}
               required
-              disabled={!isChecked}
+              disabled={isChecked}
               type="text"
               id="autorLibro"
               name="AutorLibro"
@@ -118,7 +137,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
                 },
               }}
               required
-              disabled={!isChecked}
+              disabled={isChecked}
               type="text"
               id="genero"
               name="Genero"
@@ -138,7 +157,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
                 },
               }}
               required
-              disabled={!isChecked}
+              disabled={isChecked}
               type="text"
               id="editorial"
               name="Editorial"
@@ -158,6 +177,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
             Para que la búsqueda sea más precisa rellene el máximo <br />
             número de campos posibles.
           </Typography>
+
           <Button variant="contained"
             color="primary"
             type="submit" sx={{
@@ -169,6 +189,9 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
           </Button>
         </FormControl>
       </Box>
+
+
+
     </>
   );
 }

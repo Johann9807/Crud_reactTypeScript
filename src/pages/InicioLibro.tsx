@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormularioLibros from "../components/formularioLibros";
 import { Menu } from "../components/Menu";
 import { TablaLibros } from "../components/tablaLibros";
-import ILibro from "../entidades/ILibro";
+import ILibro from "../modelos/Libro/entidades/ILibro";
 import { v4 as uuidv4 } from 'uuid';
 import InicioUsuarios from "./InicioUsuario";
 import InicioPrestamo from "./InicioPrestamo";
@@ -14,7 +14,8 @@ const estadoInicial: ILibro = {
   NombreLibro: '',
   AutorLibro: '',
   Genero: '',
-  Editorial: ''
+  Editorial: '',
+  pokemon: '',
 }
 
 export const InicioLibro = () => {
@@ -23,8 +24,20 @@ export const InicioLibro = () => {
   const [abrirAdministracionlibro, setAdministracionLibro] = useState<boolean>(true);
   const [abrirAdministracionUsuario, setAdministracionUsuario] = useState<boolean>(false);
   const [abrirAdministracionPrestamo, setAdministracionPrestamo] = useState<boolean>(false);
-  
+  const [isChecked, setIsChecked] = useState(true);
+  const [pokemonList, setPokemonList] = useState([]);
 
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemonList(data.results);
+      });
+  }, []);
+  
+const habilitarFormulario = () =>{
+  setIsChecked(!isChecked)
+}
 
   const alCambiarValor = (name: string, value: string) => {
     setLibro({
@@ -84,24 +97,26 @@ const guardarLibro = () => {
       {abrirAdministracionlibro && (
 
         <>
-        <FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} />
+        <FormularioLibros alCambiarValor={alCambiarValor} guardarLibro={guardarLibro} libro={libro} limpiarFormulario={limpiarFormulario} 
+        isChecked={isChecked}
+        habilitarFormulario={habilitarFormulario}
+        pokemonList={pokemonList}
+        />
         <TablaLibros libros={listaLibros} editarLibro={editarLibro}  eliminarLibro={eliminarLibro}/>
-        <PieDePagina/>
         </>
 
       )}
 
       {abrirAdministracionUsuario && (
         <><InicioUsuarios />
-        <PieDePagina /></>
-        
+        </>
         )}
       {abrirAdministracionPrestamo && (
         <>
         <InicioPrestamo/>
-        <PieDePagina/></>
+        </>
         )}
-      
+        <PieDePagina/>      
     </>
   )
 }
