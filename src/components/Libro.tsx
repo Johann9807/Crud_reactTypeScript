@@ -20,7 +20,7 @@ export const Libro: FunctionComponent<LibroPropiedades> = ({ libro, editarLibro,
             <td>{libro.AutorLibro}</td>
             <td>{libro.Genero}</td>
             <td>{libro.Editorial}</td>
-            <td>{libro.pokemon}</td>
+            <td><img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${libro.pokemon}.gif`} alt="" /></td>
             <td>
                 <button className="button-editar" onClick={_ => editarLibro(libro.IdLibro || "")}>
                     <FontAwesomeIcon icon={faEdit} />

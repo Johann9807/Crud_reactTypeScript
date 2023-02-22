@@ -1,4 +1,5 @@
-import { FunctionComponent} from 'react';
+import React from 'react';
+import { FunctionComponent } from 'react';
 import ILibro from '../modelos/Libro/entidades/ILibro';
 import {
   FormControl,
@@ -10,8 +11,10 @@ import {
   Box,
   FormControlLabel,
   InputLabel,
-  Select
+  Select,
+  MenuItem
 } from '@mui/material';
+import { IPokemon } from '../modelos/pokemon/entidades/IPokemon';
 
 interface LibroProps {
   alCambiarValor: (name: string, value: string) => void
@@ -19,7 +22,7 @@ interface LibroProps {
   libro: ILibro
   limpiarFormulario: () => void
   isChecked: boolean
-  pokemonList: never[]
+  pokemonList: IPokemon[]
   habilitarFormulario: () => void
 }
 
@@ -28,10 +31,7 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
     event.preventDefault();
     guardarLibro()
     limpiarFormulario();
-    
-
   };
-
 
   return (
     <>
@@ -65,24 +65,30 @@ const FormularioLibros: FunctionComponent<LibroProps> = ({ limpiarFormulario, al
               }
               label="Acepta los términos y condiciones"
             />
-            <FormControl sx={{ margin: '20px 5px 20px 100px' }}>
-              <InputLabel htmlFor="pokemon">Elegir un Pokémon</InputLabel>
+            <FormControl sx={{
+              margin: '20px 5px 20px 0px',
+              background: "#b7e9ff",
+              border: 'none'
+            }}>
+
+              <InputLabel shrink={!!libro.pokemon}>Elije tu pokemon</InputLabel>
               <Select
-                native
+                disabled={isChecked}
+                labelId="pokemon-select-label"
+                id="pokemon-select"
                 value={libro.pokemon || ''}
-                onChange={(event) => alCambiarValor('pokemon', event.target.value)}
-                inputProps={{
-                  name: 'pokemon',
-                  id: 'pokemon',
-                }}
+                onChange={(event) => alCambiarValor(event.target.name, event.target.value)}
               >
-                <option aria-label="None" value="" />
-                {pokemonList.map((pokemon: any) => (
-                  <option key={pokemon.name} value={pokemon.name}>
-                    {pokemon.name}
-                  </option>
-                ))}
+                <MenuItem value="">Selecciona un Pokémon</MenuItem>
+                {pokemonList.length > 0 &&
+                  pokemonList.map((pokemon) => (
+                    <MenuItem key={pokemon.id} value={pokemon.name}>
+                      {pokemon.name}
+                    </MenuItem>
+                  ))
+                }
               </Select>
+
             </FormControl>
 
 

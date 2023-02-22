@@ -9,6 +9,10 @@ import InicioPrestamo from "./InicioPrestamo";
 import React from 'react';
 import PieDePagina from "../components/PieDePagina";
 
+import { IPokemon } from "../modelos/pokemon/entidades/IPokemon";
+import consultarCaratulas from "../modelos/Libro";
+
+
 const estadoInicial: ILibro = {
   IdLibro: '',
   NombreLibro: '',
@@ -25,26 +29,32 @@ export const InicioLibro = () => {
   const [abrirAdministracionUsuario, setAdministracionUsuario] = useState<boolean>(false);
   const [abrirAdministracionPrestamo, setAdministracionPrestamo] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState(true);
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useState<IPokemon[]>([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=1000')
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonList(data.results);
-      });
+    const obtenerPokemon = async () => {
+      const pokemonData = await consultarCaratulas();
+      setPokemonList(pokemonData);
+    }
+    obtenerPokemon();
   }, []);
-  
+
+
 const habilitarFormulario = () =>{
   setIsChecked(!isChecked)
 }
 
-  const alCambiarValor = (name: string, value: string) => {
-    setLibro({
-      ...libro,
-      [name]: value
-    });
-  };
+  
+const alCambiarValor = (name: string, value: string) => {
+  let pokemonSeleccionado = pokemonList.find(pokemon => pokemon.name === value);
+
+  setLibro({
+    ...libro,
+    [name]: pokemonSeleccionado ? pokemonSeleccionado.id : value,
+    pokemon: pokemonSeleccionado ? value : libro.pokemon
+  });
+};
+
 
   
 const guardarLibro = () => {
